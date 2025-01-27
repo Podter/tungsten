@@ -7,6 +7,7 @@
     "start": "NODE_ENV=production bun dist/main.js"
   },
   "dependencies": {
+    "@elysiajs/swagger": "^1.2.0",
     "@t3-oss/env-core": "^0.12.0",
     "elysia": "^1.2.10",
     "zod": "^3.24.1"
