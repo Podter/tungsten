@@ -2,6 +2,12 @@
 
 An API server for storing and streaming video
 
+https://tungsten-api.podter.me
+
+## Documentation
+
+API documentation can be found [here](https://tungsten-api.podter.me/docs).
+
 ## Deployment
 
 Quickest way to deploy this is clone this repository, then use Docker Compose to get the app up and running:
