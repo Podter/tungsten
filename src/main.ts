@@ -41,13 +41,10 @@ new Elysia()
           },
         },
       },
+      exclude: ["/"],
     })
   )
-  .get("/", ({ redirect }) => redirect("/docs"), {
-    detail: {
-      hide: true,
-    },
-  })
+  .get("/", ({ redirect }) => redirect("/docs"))
   .use(api)
   .use(video)
   .listen(env.PORT, (server) => {
