@@ -1,4 +1,4 @@
-import { t } from "elysia";
+import { Static, t } from "elysia";
 
 export const VideoIdSchema = t.String({
   description: "Video ID",
@@ -18,3 +18,5 @@ export const VideoDataSchema = t.Object({
     examples: ["mp4"],
   }),
 });
+
+export type VideoData = Static<typeof VideoDataSchema>;
