@@ -1,33 +1,24 @@
-import { Elysia, t } from "elysia";
+import { t } from "elysia";
+import { ElysiaWithVideoResolver } from "~/lib/resolver";
 
-export const video = new Elysia({ prefix: "/video", tags: ["Video"] })
-  .guard({
-    params: t.Object({
-      id: t.String({
-        description: "Video ID",
-        examples: {
-          1: {
-            value: "a1bc23def456gh78",
-          },
-        },
-      }),
+export const video = ElysiaWithVideoResolver({
+  prefix: "/video",
+  tags: ["Video"],
+}).get(
+  "/:id",
+  ({ data }) => {
+    return data.file;
+  },
+  {
+    query: t.Object({
+      html: t.Optional(
+        t.Boolean({
+          description: "Return as a HTML player",
+        })
+      ),
     }),
-  })
-  .get(
-    "/:id",
-    ({ error }) => {
-      return error(501);
+    detail: {
+      description: "Get a video by ID",
     },
-    {
-      query: t.Object({
-        html: t.Optional(
-          t.Boolean({
-            description: "Return as a HTML player",
-          })
-        ),
-      }),
-      detail: {
-        description: "Get a video by ID",
-      },
-    }
-  );
+  }
+);
