@@ -36,7 +36,15 @@ export default function VideoPlayer({ data }: VideoPlayerProps) {
         }}
       >
         <h1 class="title">{data.name}</h1>
-        <video class="mb-5" controls src={fileUrl} />
+        <video
+          class="mb-5"
+          style={{
+            maxWidth: "90vw",
+            maxHeight: "80vh",
+          }}
+          controls
+          src={fileUrl}
+        />
         <a
           class="button is-primary"
           download={`${data.name}.${data.type}`}
