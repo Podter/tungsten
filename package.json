@@ -15,8 +15,11 @@
   },
   "scripts": {
     "dev": "bun --watch src/main.ts",
-    "build": "bun build src/main.ts --target bun --outdir ./dist",
-    "start": "NODE_ENV=production bun dist/main.js"
+    "build": "bun build --compile --minify --sourcemap src/main.ts --outfile dist/tungsten",
+    "start": "NODE_ENV=production dist/tungsten",
+    "docker:up": "docker compose -f compose-dev.yml up -d",
+    "docker:down": "docker compose -f compose-dev.yml down",
+    "docker:rm": "docker compose -f compose-dev.yml down -v --remove-orphans"
   },
   "dependencies": {
     "@elysiajs/cors": "^1.2.0",

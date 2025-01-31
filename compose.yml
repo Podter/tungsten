@@ -1,0 +1,29 @@
+services:
+  tungsten:
+    build:
+      context: .
+    restart: unless-stopped
+    depends_on:
+      - cobalt
+    volumes:
+      - ./data:/data:rw
+    environment:
+      - COBALT_API=http://cobalt:9000
+    ports:
+      - "3000:3000"
+
+  cobalt:
+    image: ghcr.io/imputnet/cobalt:10
+    restart: unless-stopped
+    environment:
+      - API_URL=http://cobalt:9000/
+      - API_NAME=tungsten-cobalt
+    labels:
+      - com.centurylinklabs.watchtower.scope=third_party
+
+  watchtower:
+    image: ghcr.io/containrrr/watchtower
+    restart: unless-stopped
+    command: --cleanup --scope third_party --interval 900 --include-restarting
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock

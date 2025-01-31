@@ -1,0 +1,9 @@
+services:
+  cobalt:
+    image: ghcr.io/imputnet/cobalt:10
+    restart: unless-stopped
+    environment:
+      - API_URL=http://localhost:9000/
+      - API_NAME=tungsten-cobalt
+    ports:
+      - "9000:9000"
