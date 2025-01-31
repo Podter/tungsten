@@ -19,19 +19,15 @@ export const video = new Elysia({ prefix: "/video", tags: ["Video"] })
       return error(501);
     },
     {
+      query: t.Object({
+        html: t.Optional(
+          t.Boolean({
+            description: "Return as a HTML player",
+          })
+        ),
+      }),
       detail: {
-        description: "Get a video file by ID",
-      },
-    }
-  )
-  .get(
-    "/:id/html",
-    ({ error }) => {
-      return error(501);
-    },
-    {
-      detail: {
-        description: "Get a HTML video player for the video by ID",
+        description: "Get a video by ID",
       },
     }
   );
