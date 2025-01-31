@@ -4,6 +4,7 @@ import fs from "node:fs";
 import { api } from "./routes/api";
 import { swagger } from "@elysiajs/swagger";
 import { video } from "./routes/video";
+import { cors } from "@elysiajs/cors";
 import { version } from "../package.json";
 import logixlysia from "logixlysia";
 
@@ -21,6 +22,7 @@ new Elysia()
       },
     })
   )
+  .use(cors())
   .use(
     swagger({
       path: "/docs",
