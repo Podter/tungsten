@@ -60,7 +60,15 @@ export class VideoStorage {
     };
   }
 
-  async add({ name, type, data }: { name: string; type: string; data: Blob }) {
+  async add({
+    name,
+    type,
+    data,
+  }: {
+    name: string;
+    type: string;
+    data: Blob | ArrayBuffer;
+  }) {
     const id = nanoid();
 
     await Bun.write(this.getVideoPath(id, type), data);
