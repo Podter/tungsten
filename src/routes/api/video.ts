@@ -1,6 +1,6 @@
 import { Elysia, t } from "elysia";
 
-export const video = new Elysia({ prefix: "/video", tags: ["Video"] })
+export const video = new Elysia({ prefix: "/video" })
   .guard({
     params: t.Object({
       id: t.String({
@@ -20,18 +20,29 @@ export const video = new Elysia({ prefix: "/video", tags: ["Video"] })
     },
     {
       detail: {
-        description: "Get a video file by ID",
+        description: "Get video data by ID",
       },
     }
   )
-  .get(
-    "/:id/html",
+  .put(
+    "/:id",
     ({ error }) => {
       return error(501);
     },
     {
       detail: {
-        description: "Get a HTML video player for the video by ID",
+        description: "Update video data",
+      },
+    }
+  )
+  .delete(
+    "/:id",
+    ({ error }) => {
+      return error(501);
+    },
+    {
+      detail: {
+        description: "Delete uploaded video",
       },
     }
   );

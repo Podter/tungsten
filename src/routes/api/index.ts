@@ -1,30 +1,11 @@
 import { Elysia, t } from "elysia";
+import { video } from "./video";
 
 export const api = new Elysia({
   prefix: "/api",
   tags: ["API"],
 })
-  .get(
-    "/video/:id",
-    ({ error }) => {
-      return error(501);
-    },
-    {
-      params: t.Object({
-        id: t.String({
-          description: "Video ID",
-          examples: {
-            1: {
-              value: "a1bc23def456gh78",
-            },
-          },
-        }),
-      }),
-      detail: {
-        description: "Get video data by ID",
-      },
-    }
-  )
+  .use(video)
   .post(
     "/upload",
     ({ error }) => {
