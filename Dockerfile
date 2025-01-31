@@ -2,7 +2,7 @@
 FROM oven/bun:slim AS build
 WORKDIR /app
 RUN --mount=type=bind,source=package.json,target=package.json \
-    --mount=type=bind,source=bun.lockb,target=bun.lock \
+    --mount=type=bind,source=bun.lock,target=bun.lock \
     --mount=type=cache,target=/root/.bun/install/cache \
     bun install --frozen-lockfile
 COPY . .
