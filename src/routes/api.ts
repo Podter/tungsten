@@ -11,8 +11,18 @@ export const api = new Elysia({
     },
     {
       params: t.Object({
-        id: t.String(),
+        id: t.String({
+          description: "Video ID",
+          examples: {
+            1: {
+              value: "a1bc23def456gh78",
+            },
+          },
+        }),
       }),
+      detail: {
+        description: "Get video data by ID",
+      },
     }
   )
   .post(
@@ -22,9 +32,19 @@ export const api = new Elysia({
     },
     {
       body: t.Object({
-        name: t.String(),
-        file: t.File(),
+        file: t.File({
+          description: "Video file",
+        }),
+        name: t.Optional(
+          t.String({
+            description: "Video file name",
+            examples: ["An awesome video"],
+          })
+        ),
       }),
+      detail: {
+        description: "Upload a video file",
+      },
     }
   )
   .post(
@@ -34,7 +54,22 @@ export const api = new Elysia({
     },
     {
       body: t.Object({
-        url: t.String(),
+        url: t.String({
+          description: "Video URL (including YouTube, TikTok, etc.)",
+          examples: [
+            "http://example.com/video.mp4",
+            "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          ],
+        }),
+        name: t.Optional(
+          t.String({
+            description: "Video file name",
+            examples: ["An awesome video"],
+          })
+        ),
       }),
+      detail: {
+        description: "Download a video file, and save it to the server",
+      },
     }
   );

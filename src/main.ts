@@ -40,6 +40,16 @@ new Elysia()
             name: "MIT",
           },
         },
+        tags: [
+          {
+            name: "API",
+            description: "API for video operations",
+          },
+          {
+            name: "Video",
+            description: "Serve or stream the video",
+          },
+        ],
       },
       exclude: ["/"],
     })
