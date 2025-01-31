@@ -1,6 +1,18 @@
 {
   "name": "tungsten",
+  "description": "An API for storing and streaming video",
   "type": "module",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": {
+    "name": "Nonthaphat Chaisu",
+    "email": "hi@podter.me",
+    "url": "https://podter.me"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Podter/memo-wrap.git"
+  },
   "scripts": {
     "dev": "bun --watch src/main.ts",
     "build": "bun build src/main.ts --target bun --outdir ./dist",
