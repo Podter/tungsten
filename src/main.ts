@@ -5,12 +5,22 @@ import { api } from "./routes/api";
 import { swagger } from "@elysiajs/swagger";
 import { video } from "./routes/video";
 import { version } from "../package.json";
+import logixlysia from "logixlysia";
 
 if (!fs.existsSync(env.DATA_DIR)) {
   fs.mkdirSync(env.DATA_DIR);
 }
 
 new Elysia()
+  .use(
+    logixlysia({
+      config: {
+        showStartupMessage: false,
+        customLogFormat:
+          "{now} {level} {duration} {method} {pathname} {status}",
+      },
+    })
+  )
   .use(
     swagger({
       path: "/docs",
