@@ -93,6 +93,10 @@ export class VideoStorage {
     this.db.query("DELETE FROM files WHERE id = ?").run(data.id);
     await Bun.file(this.getVideoPath(data.id, data.type)).delete();
   }
+
+  list() {
+    return this.db.query<VideoData, {}>("SELECT * FROM files").all({});
+  }
 }
 
 export const storage = new VideoStorage();

@@ -10,6 +10,20 @@ export const api = new Elysia({
   tags: ["API"],
 })
   .use(video)
+  .get(
+    "/list",
+    () => {
+      return storage.list().map(({ id }) => id);
+    },
+    {
+      detail: {
+        description: "List all video IDs",
+      },
+      response: t.Array(t.String(), {
+        description: "Video IDs",
+      }),
+    }
+  )
   .post(
     "/upload",
     async ({ error, body }) => {
